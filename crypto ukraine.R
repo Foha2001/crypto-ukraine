@@ -196,23 +196,24 @@ library(biwavelet)
 library(zoo)
 library(xts)
 
-t1 <- cbind(1:197,R_dataframe$Litecoin)
-t2 <- cbind(1:197,R_dataframe$US)
+t1 <- cbind(1:197,R_dataframe$Tether)
+t2 <- cbind(1:197,R_dataframe$China)
 t1[is.na(t1)] <- 0
 t2[is.na(t2)] <- 0
-nrands=10
+nrands=100
 sum(is.na(t1))
 sum(is.na(t2))
 wtcr <- wtc(t1,t2,nrands=nrands)
-par(mar=c(5,4,5,5),+0.1)
+par(mar=c(5,4,5,7),+0.1)
 #par(oma=c(1,1,1,0),mar=c(0,4,0.5,5),+0.1)
 plot(wtcr,plot.phase=TRUE,xaxt='n',lty.coi=1,col.coi="grey",lwd.coi=2, 
      lwd.sig=2, arrow.lwd=0.03, arrow.len=0.08, ylab="Frequency",xlab="Years-Month",
-     plot.cb= T, main="WTC : Litecoin-US index", cex.main=0.8)
+     plot.cb= T, main="WTC : Tether- SSE index", cex.main=0.8)
+
 n <- c("2021-07","2021-08","2021-09","2021-10","2021-11",
        "2021-12","2022-01","2022-02","2022-03","2022-04","2022-05",
        "2022-06","2022-07")
-axis(1, at = c(seq(0,156,13)), n )
+axis(1, at = c(seq(0,195,16)), n )
 
 
 
