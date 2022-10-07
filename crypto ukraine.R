@@ -57,7 +57,9 @@ write_xlsx(return,"return.xlsx")
 getSymbols("^VIX",source="yahoo" ,from=start_date, to=end_date)
 vix <- na.omit(VIX$VIX.AdjGSPC.Closeted)
 vix <- diff(log(vix$VIX.AdjGSPC.Closeted))
+tiff("fig1.jpg",width = 10, height = 10, units = 'in', res = 350) #for high resolution
 plot(vix)
+dev.off()
 
 
 #********normality test************##
@@ -95,6 +97,7 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(tibble)
+tiff("fig2.Canada.jpg",width = 10, height = 10, units = 'in', res = 350) #for high resolution
 predvol %>%
   as.data.frame() %>%
   rownames_to_column("Date") %>%
@@ -106,7 +109,7 @@ predvol %>%
     labels = date_format("%b\n%Y")) +
   theme_minimal() + labs(title = "Canada index Volatility",
                          subtitle = "Garch(1,1)")
-
+dev.off()
 
 
 
@@ -180,12 +183,14 @@ colrss <- c("tomato2","antiquewhite2")
 V(Neural)$color <- colrss[V(Neural)$type]
 edge.start <- ends(Neural, es=E(Neural), names=F)[,1]
 edge.col <- V(Neural)$color[edge.start]
+tiff("fig3.2.jpg",width = 10, height = 10, units = 'in', res = 350) #for high resolution
 plot(Neural,layout=layout_in_circle, vertex.shape="circle",
      vertex.size=Neural_deg*5,vertex.label.cex=0.9,edge.width=2,
      edge.arrow.size=0.5, edge.color=edge.col) 
-legend(x=-2, y=-1.1, c("Cryptocurrencies","Equity markets"),
+legend(x=-1.5, y=-1.1, c("Cryptocurrencies","Equity markets"),
        pch=21, col="#777777", pt.bg=colrss, pt.cex=1.5, cex=1, bty="n",
        ncol=1)
+dev.off()
 
 
 
